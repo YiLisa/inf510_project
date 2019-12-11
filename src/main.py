@@ -45,7 +45,7 @@ def main():
         hot_songs['genre'] = hot_songs.apply(
             lambda x: dg.get_genres(x['song'], x['artist1'], x['artist2'], x['artist3'], x['artist4']), axis=1)
         print('Getting artist type from musicbrainz API...')
-        hot_songs['artist_type'] = hot_songs.apply(lambda x: get_song_artists_type(x), axis=1)
+        hot_songs['artist_type'] = hot_songs.apply(lambda x: dg.get_song_artists_type(x), axis=1)
         print('Performing sentiment analysis on lyrics...')
         hot_songs['lyrics_sentiment'] = hot_songs['lyrics'].apply(
             lambda x: dg.get_sentiment_score(x) if x != 'Not Found' else 0)
